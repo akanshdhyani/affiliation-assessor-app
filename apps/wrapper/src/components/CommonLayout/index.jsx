@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faChevronLeft,
+  faArrowLeft,
   faRightFromBracket,
+  faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import CommonModal from "../Modal";
@@ -26,9 +27,9 @@ const CommonLayout = (props) => {
 
   return (
     <>
-      <div className="bg-tertiary h-screen w-screen flex flex-col lg:w-[52vw] md:w-[80vw] md:m-auto lg:m-auto">
-        <div className="w-full flex h-[18%] flex-row justify-between relative">
-          <div style={{ height: 20, width: 20, borderRadius: '50%', position: 'absolute', top: 0, right: 0, background: online ? '#229225' : 'red', marginTop: 10, marginRight: 20 }}></div>
+      <div className="flex flex-col bg-tertiary h-screen w-screen lg:w-[52vw] md:w-[80vw] md:m-auto lg:m-auto overflow-none">
+        <div className="flex flex-row w-full justify-between relative">
+          <div style={{ height: 20, width: 20, borderRadius: '50%', position: 'absolute', top: 0, right: 0, background: online ? '#229225' : 'red', marginTop: 20, marginRight: 20 }}></div>
           <img
             src="/assets/redGolLogo.png"
             className="p-5 h-[120px] w-[120px] lg:w-[170px] lg:h-[170px]"
@@ -40,26 +41,44 @@ const CommonLayout = (props) => {
             alt="illustration"
           />
         </div>
-        <div className="bg-white h-full w-full rounded-t-[60px] overflow-scroll pb-5">
-          <div className="flex flex-row w-full px-8 py-7 justify-between cursor-pointer">
-            {!props.backDisabled && (
-              <FontAwesomeIcon
-                icon={faChevronLeft}
-                className="text-2xl text-gray-300 lg:text-4xl"
-                onClick={() => {
-                  props.backFunction
-                    ? props.backFunction()
-                    : navigate(props.back);
-                }}
-              />
-            )}
-            {!props.logoutDisabled && (
-              <FontAwesomeIcon
-                icon={faRightFromBracket}
-                className="text-2xl text-gray-300 lg:text-4xl"
-                onClick={() => showLogoutModal(true)}
-              />
-            )}
+        <div className="bg-white h-[calc(100vh-120px)] w-full rounded-t-[60px] overflow-none">
+          <div className="flex flex-col px-8 py-7 gap-2">
+            <div className="flex flex-row w-full items-center cursor-pointer gap-4">
+              <div className="flex grow-0">
+                {
+                  !props.backDisabled && (
+                    <FontAwesomeIcon
+                      icon={ props.iconType === 'close' ? faXmark : faArrowLeft }
+                      className="text-2xl lg:text-4xl"
+                      onClick={() => {
+                        props.backFunction
+                          ? props.backFunction()
+                          : navigate(props.back);
+                      }}
+                    />
+                  )
+                }
+              </div>
+              <div className="flex grow items-center flex-col gap-4">
+                <div className="text-secondary tracking-wide text-[25px] font-bold lg:text-[45px] items-center">{ props.pageTitle }</div>
+              </div>    
+              <div className="flex grow-0">
+                {
+                  !props.logoutDisabled && (
+                    <FontAwesomeIcon
+                      icon={faRightFromBracket}
+                      className="text-2xl lg:text-4xl"
+                      onClick={() => showLogoutModal(true)}
+                    />
+                  )
+                }
+              </div>
+            </div>
+            {
+              props.pageDesc && (
+                <div className="text-center text-gray-600">{ props.pageDesc }</div>
+              )
+            }
           </div>
           {props.children}
         </div>
