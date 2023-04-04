@@ -3,7 +3,7 @@ import CommonLayout from "../components/CommonLayout";
 
 const Form = () => {
   return (
-    <CommonLayout>
+    <CommonLayout crossDisabled>
       <div className="flex flex-col py-8 items-center">
        
         <iframe

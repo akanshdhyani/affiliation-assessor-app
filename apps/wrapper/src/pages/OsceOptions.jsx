@@ -211,7 +211,7 @@ const OsceOptions = () => {
     role && (
       <CommonLayout
         back={ROUTE_MAP.nursing_options}
-        backFunction={assType ? backFunction : null}
+        backFunction={assType ? backFunction : null} crossDisabled
       >
         {!assType && !course && (
           <div className="flex flex-col px-5 py-8 items-center">

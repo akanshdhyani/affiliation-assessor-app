@@ -34,6 +34,7 @@ const CaptureLocation = () => {
             lat: p.coords.latitude,
             long: p.coords.longitude,
           },
+      
         });
         setDistance(
           calcDistance(
@@ -127,27 +128,68 @@ const CaptureLocation = () => {
   }, [])
 
   return (
-    <CommonLayout back={role == 'Medical' ? ROUTE_MAP.assessment_type : ROUTE_MAP.medical_assessments}>
-      <div className="flex flex-col px-5 py-8 items-center">
-        <img
+    <CommonLayout back={role == 'Medical' ? ROUTE_MAP.assessment_type : ROUTE_MAP.medical_assessments} logoutDisabled backDisabled>
+     
+      <div className="flex flex-col px-5 py-8 items-center" >
+      
+        
+        {/* <img
           src="/assets/locationGirl.png"
           className="h-[200px] mt-4 lg:h-[300px]"
           alt="locationGirl"
-        />
-        {!showMap && loading && (
+        /> */}
+   <div className="h-[300px] lg:h-[200px] mb-6">
+   { (
+          <iframe
+            src={`https://maps.google.com/maps?q=${lat},${long}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+            width={isMobile ? "100%" : "60%"}
+            height={300}
+            loading="lazy"
+            title="map"
+            className="mt-5 animate__animated animate__fadeIn"
+          />
+        )}
+
+</div>
+        {showMap && loading && (
           <div className="w-[60%] h-[200px] bg-gray-200 flex">
             <div className="loader"></div>
           </div>
         )}
         {showMap && (
-          <iframe
+          <>
+          {/* <iframe
             src={`https://maps.google.com/maps?q=${lat},${long}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
             width={isMobile ? "100%" : "60%"}
             height={200}
             loading="lazy"
             title="map"
             className="mt-5 animate__animated animate__fadeIn"
+          /> */}
+          <p className= "lg:text-4xl text-green-600 text-[20px] font-bold mt-8 lg:text-[45px] animate__animated animate__fadeInDown">
+          Location Captured !
+            </p>
+          <Button
+          text="Continue"
+          styles={
+            disabled
+              ? "bg-white text-primary opacity-75 w-80 lg:w-[60%] animate__animated animate__fadeInDown"
+              : "w-80 lg:w-[60%]"
+          }
+          onClick={handleSubmit}
+        />
+        { (
+          <Button 
+            text="Re-capture Location"
+            onClick={getLocation}
+            styles={
+              loading
+                ? "bg-white text-primary opacity-75 w-80 lg:w-[60%]"
+                : "w-80 lg:w-[60%] animate__animated animate__fadeInDown"
+            }
           />
+        )}
+        </>
         )}
         {error && (
           <span className="text-white animate__animated animate__headShake bg-rose-600 font-medium px-4 py-2 text-center mt-2">
@@ -165,15 +207,7 @@ const CaptureLocation = () => {
             }
           />
         )}
-        <Button
-          text="Continue"
-          styles={
-            disabled
-              ? "bg-white text-primary opacity-75 w-80 lg:w-[60%] animate__animated animate__fadeInDown"
-              : "w-80 lg:w-[60%]"
-          }
-          onClick={handleSubmit}
-        />
+      
         <style>
           {`
                     .loader {

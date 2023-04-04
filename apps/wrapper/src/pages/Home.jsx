@@ -11,7 +11,7 @@ const Home = ({ handleStepChangeForLogin }) => {
     handleStepChangeForLogin();
   };
   return (
-    <CommonLayout backDisabled={true} logoutDisabled>
+    <CommonLayout backDisabled={true} logoutDisabled crossDisabled>
       <div className="flex flex-col px-5 py-8 items-center ">
         <img
           src="/assets/homeVector.png "

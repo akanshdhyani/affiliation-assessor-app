@@ -83,7 +83,7 @@ const MedicalAssessmentsOptions = () => {
 
   return (
     role && (
-      <CommonLayout back={ROUTE_MAP.medical_assessments}>
+      <CommonLayout back={ROUTE_MAP.medical_assessments} crossDisabled>
         <div className="flex flex-col px-5 py-8 items-center mb-20">
           <style>
             {`

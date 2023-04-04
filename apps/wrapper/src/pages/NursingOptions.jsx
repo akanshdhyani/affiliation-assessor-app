@@ -51,7 +51,7 @@ const NursingOptions = () => {
 
   return (
     role && (
-      <CommonLayout back={ROUTE_MAP.medical_assessment_options}>
+      <CommonLayout back={ROUTE_MAP.medical_assessment_options} crossDisabled>
         <div className="flex flex-col px-5 py-8 items-center">
           <p className="text-secondary text-[34px] font-bold mt-5 lg:text-[45px] text-center animate__animated animate__fadeInDown">
             Select your assessment type

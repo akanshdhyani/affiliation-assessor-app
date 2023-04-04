@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ text, onClick, styles = "", css }) => {
+export const Button = ({ text, onClick, styles = "", css }) => {
   return (
     <button
       onClick={onClick}
@@ -11,5 +11,17 @@ const Button = ({ text, onClick, styles = "", css }) => {
     </button>
   );
 };
+export const ButtonTwo = ({ text, onClick, styles = "", css }) => {
+  return (
+    <button
+      onClick={onClick}
+      style={css}
+      className={` transition-all duration-300   border-2 font-medium py-3 mt-6 w-full text-[18px] ${styles}`}
+    >
+      {text}
+    </button>
+  );
+};
+
 
 export default Button;

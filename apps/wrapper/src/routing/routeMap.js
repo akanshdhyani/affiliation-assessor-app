@@ -3,6 +3,7 @@ const ROUTE_MAP = {
   login: "/login",
   register: "/register",
   medical_assessments: "/medical-assessments",
+  application_type: "/application-type",
   upcoming_medical_assessments: "/upcoming-medical-assessments",
   capture_location: "/capture-location",
   medical_assessment_options: "/medical-assessment-options",

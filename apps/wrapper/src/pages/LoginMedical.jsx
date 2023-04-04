@@ -57,7 +57,7 @@ const LoginMedical = ({ handleStepChangeForLogin }) => {
   };
 
   return (
-    <CommonLayout backFunction={handleStepChangeForLogin} logoutDisabled>
+    <CommonLayout backFunction={handleStepChangeForLogin} logoutDisabled crossDisabled>
       <div className="flex flex-col px-5 py-8 items-center">
         <p className="text-secondary text-[34px] font-bold mt-5 lg:text-[45px] animate__animated animate__fadeInDown">
           Welcome Back
